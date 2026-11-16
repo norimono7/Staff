@@ -130,4 +130,3 @@ $("reset").addEventListener("click", () => {
 updateClock();
 render();
 setInterval(updateClock, 1000);
-setInterval(render, 1000);
