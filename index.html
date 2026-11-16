@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#172033" />
+    <title>見市線 スタフ</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">FICTIONAL RAILWAY / STAFF</p>
+          <h1>見市線 <span>スタフ</span></h1>
+          <p class="hero-copy">現在時刻を基準に、出発時刻と駅ごとの通過時刻を自動作成します。</p>
+        </div>
+        <div class="clock-card">
+          <span>現在時刻</span>
+          <strong id="now">--:--:--</strong>
+          <small id="today">----</small>
+        </div>
+      </header>
+
+      <section class="panel controls" aria-labelledby="settings-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">SETTINGS</p>
+            <h2 id="settings-title">運転条件</h2>
+          </div>
+          <button id="reset" class="button button-quiet" type="button">初期設定に戻す</button>
+        </div>
+        <div class="control-grid">
+          <label>
+            <span>始発駅</span>
+            <select id="origin"></select>
+          </label>
+          <label>
+            <span>終着駅</span>
+            <select id="destination"></select>
+          </label>
+          <label>
+            <span>出発まで</span>
+            <div class="input-with-unit">
+              <input id="minutes" type="number" min="0" max="1440" step="1" value="5" />
+              <em>分後</em>
+            </div>
+          </label>
+          <label>
+            <span>列車種別</span>
+            <select id="service"></select>
+          </label>
+        </div>
+        <div class="service-note" id="service-note"></div>
+      </section>
+
+      <section class="route-strip" aria-label="見市線 路線図">
+        <div class="route-title"><span class="route-dot"></span><strong>見市線</strong><small>MIICHI LINE</small></div>
+        <div class="route-line" id="route-line"></div>
+      </section>
+
+      <section class="panel timetable-panel" aria-labelledby="timetable-title">
+        <div class="section-heading timetable-heading">
+          <div>
+            <p class="section-kicker">WORKING TIMETABLE</p>
+            <h2 id="timetable-title">列車スタフ</h2>
+          </div>
+          <div class="legend">
+            <span><i class="legend-stop"></i>停車</span>
+            <span><i class="legend-pass"></i>(レ) 通過</span>
+            <span><i class="legend-change"></i>乗務員交代</span>
+          </div>
+        </div>
+        <div class="summary" id="summary"></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">駅名</th>
+                <th scope="col">着時刻</th>
+                <th scope="col">発時刻</th>
+                <th scope="col">駅間</th>
+                <th scope="col">備考</th>
+              </tr>
+            </thead>
+            <tbody id="timetable"></tbody>
+          </table>
+        </div>
+        <p class="footnote">駅間所要時間：1分20秒　／　停車時間：30秒（始発駅を除く）　／　時刻はこのページを開いた端末の現在時刻を基準に算出</p>
+      </section>
+
+      <footer>
+        <span>架空鉄道・見市線</span>
+        <span>© Staff timetable</span>
+      </footer>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
