@@ -40,6 +40,11 @@ select:focus, input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px r
 .input-with-unit { align-items: center; display: flex; gap: 7px; }
 .input-with-unit em { color: var(--muted); font-size: 12px; font-style: normal; white-space: nowrap; }
 .service-note { color: var(--muted); font-size: 12px; margin-top: 15px; }
+.confirm-row { align-items: center; border-top: 1px solid var(--line); display: flex; gap: 14px; justify-content: space-between; margin-top: 19px; padding-top: 17px; }
+.setting-status { color: var(--muted); font-size: 12px; }
+.setting-status.is-locked { color: var(--green); font-weight: 700; }
+.button-primary { background: var(--accent); color: white; font-size: 13px; font-weight: 700; padding: 11px 20px; white-space: nowrap; }
+.button-primary:hover { background: var(--accent-dark); }
 .route-strip { align-items: center; background: #eceff5; border-radius: 16px; display: flex; gap: 23px; margin: 20px 0; min-height: 79px; overflow: hidden; padding: 17px 21px; }
 .route-title { flex: 0 0 auto; }
 .route-title strong { display: block; font-size: 14px; }
@@ -88,5 +93,6 @@ footer { color: #9ca6b7; display: flex; font-size: 11px; justify-content: space-
   .route-line { width: 100%; }
   .timetable-heading { align-items: flex-start; flex-direction: column; }
   .panel { padding: 19px 15px; }
+  .confirm-row { align-items: stretch; flex-direction: column; }
 }
 @media (max-width: 420px) { .control-grid { grid-template-columns: 1fr; } }

@@ -38,6 +38,10 @@ const service = $("service");
 const minutes = $("minutes");
 const timetable = $("timetable");
 const routeLine = $("route-line");
+const confirmSettings = $("confirm-settings");
+const settingStatus = $("setting-status");
+const settingInputs = [origin, destination, service, minutes];
+let isLocked = false;
 
 stations.forEach((station, index) => {
   origin.add(new Option(station, index));
@@ -118,15 +122,38 @@ function render() {
   buildRoute();
 }
 
-[origin, destination, service, minutes].forEach((element) => element.addEventListener("input", render));
+function setLocked(locked) {
+  isLocked = locked;
+  settingInputs.forEach((element) => { element.disabled = locked; });
+  confirmSettings.textContent = locked ? "設定をやり直す" : "設定完了";
+  settingStatus.textContent = locked
+    ? "設定完了：この時刻表の時刻は固定されています"
+    : "設定前：内容を確認して設定完了を押してください";
+  settingStatus.classList.toggle("is-locked", locked);
+}
+
+settingInputs.forEach((element) => element.addEventListener("input", () => {
+  if (!isLocked) render();
+}));
+confirmSettings.addEventListener("click", () => {
+  if (isLocked) {
+    setLocked(false);
+    render();
+    return;
+  }
+  render();
+  setLocked(true);
+});
 $("reset").addEventListener("click", () => {
   origin.value = "0";
   destination.value = String(stations.length - 1);
   service.value = "local";
   minutes.value = "5";
+  setLocked(false);
   render();
 });
 
 updateClock();
+setLocked(false);
 render();
 setInterval(updateClock, 1000);
